@@ -21,7 +21,7 @@ app.get("/api/email", async (req, res, next) => {
   });
 
   await transporter.sendMail({
-    from: "mariokaram257@gmail.com", // sender address
+    from: "testmariokaram@gmail.com", // sender address
     to: req.query.emailName, // list of receivers
     subject: "Hello ✔", // Subject line
     text: "Hello world?", // plain text body
