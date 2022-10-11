@@ -7,6 +7,8 @@ const PORT = process.env.PORT || 4000;
 const path = require("path");
 app.use(cors());
 
+console.log("hey");
+
 app.get("/api/email", async (req, res, next) => {
   let transporter = nodemailer.createTransport({
     host: "smtp.sendgrid.net",
