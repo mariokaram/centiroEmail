@@ -7,8 +7,6 @@ const PORT = process.env.PORT || 4000;
 const path = require("path");
 app.use(cors());
 
-console.log("hey");
-
 app.get("/api/email", async (req, res, next) => {
   let transporter = nodemailer.createTransport({
     host: "smtp.sendgrid.net",
@@ -23,7 +21,7 @@ app.get("/api/email", async (req, res, next) => {
   await transporter.sendMail({
     from: "testmariokaram@gmail.com", // sender address
     to: req.query.emailName, // list of receivers
-    subject: "Hello ✔", // Subject line
+    subject: `Hello ✔ ${req.query.name} `, // Subject line
     text: "Hello world?", // plain text body
     html: `
     
@@ -147,7 +145,7 @@ app.get("/api/email", async (req, res, next) => {
   
         <div class='orderContainer'>
   
-          <div class='orderTitle'>Hello Mario</div>
+          <div class='orderTitle'>Hello ${req.query.name}</div>
           <div class='orderDesc'>Thank you for shopping with us. We thought you'd like to know that your item has shipped, and that this completes your order. Your order is on its way, and can no longer be changed. If you need to return an item from this shipment or manage other orders, please visit Your Orders on Centiro</div>
   
   
@@ -170,10 +168,10 @@ app.get("/api/email", async (req, res, next) => {
   
           <div class='secondColumn'>
             <div class='orderName'>
-              Your order was sent to: <strong>Mario</strong>
+              Your order was sent to: <strong>${req.query.name}</strong>
             </div>
             <div class='address'>
-            Address: Laval, Quebec
+            Address: <strong>${req.query.address}</strong>
             </div>
             <div class='price'>
               Order total: <strong>CDN$ 27.59</strong>
