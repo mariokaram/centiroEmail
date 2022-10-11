@@ -1,6 +1,6 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
-
+require("dotenv").config();
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -13,8 +13,8 @@ app.get("/api/email", async (req, res, next) => {
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "apikey", // generated ethereal user
-      pass: "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", // generated ethereal password
+      user: process.env.user, // generated ethereal user
+      pass: process.env.pass, // generated ethereal password
     },
   });
 
